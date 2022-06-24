@@ -23,24 +23,32 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: base-url
-            - name: CAPTURE_URL
-              value: $(BASE_URL)/capture/
-            - name: PUBLIC_URL
-              value: $(BASE_URL)/data-fair/
+
+            - name: MODE
+              value: server
             - name: DEBUG
               value: upgrade*
+            - name: PUBLIC_URL
+              value: $(BASE_URL)/data-fair/
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory/
+            - name: PRIVATE_DIRECTORY_URL
+              value: http://simple-directory:8080
+            - name: OPENAPI_VIEWER_URL
+              value: $(BASE_URL)/api-doc/
+
             - name: ES_HOST
               value: elasticsearch:9200
             - name: MONGO_URL
               value: mongodb://mongo:27017/data-fair
+
+            - name: CAPTURE_URL
+              value: $(BASE_URL)/capture/
             - name: NOTIFY_URL
               value: $(BASE_URL)/notify
-            - name: OPENAPI_VIEWER_URL
-              value: $(BASE_URL)/api-doc/
-            - name: PRIVATE_DIRECTORY_URL
-              value: http://simple-directory:8080
+            - name: PRIVATE_NOTIFY_URL
+              value: http://notify:8080
+
             - name: SECRET_IDENTITIES
               valueFrom:
                 configMapKeyRef:
@@ -52,6 +60,13 @@ spec:
               value: $(SECRET_IDENTITIES)
             - name: THUMBOR_URL
               value: $(BASE_URL)/thumbor/
+
+            - name: EXTRA_NAV_ITEMS
+              value: '[{"id": "processings","can":"contrib", "iframe": "/processings/processings", "icon": "mdi-cog-transfer-outline", "title": "Traitements périodiques"},{"id": "portal","iframe": "/portals/manager/portals", "icon": "mdi-presentation", "title": "Portails"},{"id": "metrics","iframe": "/metrics/embed/home", "icon": "mdi-chart-bar", "title": "Audience", "subtitle": "Téléchargements, API"}]'
+
+            - name: EXTRA_ADMIN_NAV_ITEMS
+              value: '[{"id": "processings","iframe": "/processings/admin/plugins", "icon": "mdi-cog-transfer-outline", "title": "Traitements périodiques"},{"id": "portal","iframe": "/portals/manager/admin", "icon": "mdi-presentation", "title": "Portails"}]'
+
           ports:
             - containerPort: 8080
           resources:
