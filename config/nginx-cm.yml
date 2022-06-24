@@ -40,6 +40,21 @@ data:
         proxy_pass http://data-fair:8080/;
       }
 
+      location /portals {
+        rewrite  ^/portals/(.*) /$1 break;
+        proxy_pass http://portals:8080/;
+      }
+
+      location /processings {
+        rewrite  ^/processings/(.*) /$1 break;
+        proxy_pass http://processings:8080/;
+      }
+
+      location /metrics {
+        rewrite  ^/metrics/(.*) /$1 break;
+        proxy_pass http://metrics:8080/;
+      }
+
       location /simple-directory {
         rewrite  ^/simple-directory/(.*) /$1 break;
         proxy_pass http://simple-directory:8080/;
