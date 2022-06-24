@@ -15,7 +15,9 @@ spec:
         name: data-fair
     spec:
       containers:
-        - env:
+        - image: ghcr.io/data-fair/data-fair:master
+          name: data-fair
+          env:
             - name: BASE_URL
               valueFrom:
                 configMapKeyRef:
@@ -50,8 +52,6 @@ spec:
               value: $(SECRET_IDENTITIES)
             - name: THUMBOR_URL
               value: $(BASE_URL)/thumbor/
-          image: ghcr.io/data-fair/data-fair:master
-          name: data-fair
           ports:
             - containerPort: 8080
           resources:

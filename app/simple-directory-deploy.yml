@@ -13,7 +13,11 @@ spec:
         name: simple-directory
     spec:
       containers:
-        - env:
+        - image: ghcr.io/data-fair/simple-directory:4
+          command: ["/webapp/node_modules/.bin/nodemon"]
+          args: ["server"]
+          name: simple-directory
+          env:
             - name: ADMINS
               value: '["admin@test.com"]'
             - name: HOME_PAGE
@@ -25,6 +29,12 @@ spec:
               value: admin
             - name: MAILDEV_ACTIVE
               value: "true"
+            - name: MAILS_TRANSPORT
+              value: '{"host": "$(HOME_PAGE)/mails/"}'
+            - name: CONTACT
+              value: contact@test.com
+            - name: MAILS_FROM
+              value: $(CONTACT)
             - name: MAILDEV_URL
               value: $(HOME_PAGE)/mails/
             - name: NOTIFY_URL
@@ -37,21 +47,23 @@ spec:
               value: $(HOME_PAGE)/simple-directory
             - name: ROLES_DEFAULTS
               value: '["admin","contrib","user"]'
-            - name: SECRET_NOTIFICATIONS
-              valueFrom:
-                configMapKeyRef:
-                  name: config-global
-                  key: secret
             - name: SECRET_SENDMAILS
               value: $(SECRET_NOTIFICATIONS)
             - name: STORAGE_MONGO_URL
               value: mongodb://mongo:27017/simple-directory
             - name: USER_SELF_DELETE
               value: "true"
-          image: ghcr.io/data-fair/simple-directory:4
-          command: ["/webapp/node_modules/.bin/nodemon"]
-          args: ["server"]
-          name: simple-directory
+            - name: MANAGE_DEPARTMENTS
+              value: "true"
+            - name: SECRET_NOTIFICATIONS
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: secret
+            - name: SECRET_IDENTITIES
+              value: $(SECRET_NOTIFICATIONS)
+            - name: SECRET_SENDMAILS
+              value: $(SECRET_NOTIFICATIONS)
           ports:
             - containerPort: 8080
           resources:
