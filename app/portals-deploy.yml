@@ -60,9 +60,9 @@ spec:
               cpu: 500m
           volumeMounts:
             - mountPath: /webapp/data
-              name: data-fair-data
+              name: processings-data
 
       volumes:
-        - name: data-fair-data
+        - name: processings-data
           persistentVolumeClaim:
-            claimName: data-fair-data
+            claimName: processings-data
