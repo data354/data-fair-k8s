@@ -15,7 +15,7 @@ spec:
         name: data-fair-worker
     spec:
       containers:
-        - image: ghcr.io/data-fair/data-fair:master
+        - image: ghcr.io/data-fair/data-fair:3
           name: data-fair-worker
           env:
             - name: BASE_URL

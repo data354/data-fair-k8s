@@ -30,7 +30,10 @@ spec:
             - name: MAILDEV_ACTIVE
               value: "true"
             - name: MAILS_TRANSPORT
-              value: '{"host": "$(HOME_PAGE)/mails/"}'
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mails-transport
             - name: CONTACT
               value: contact@test.com
             - name: MAILS_FROM

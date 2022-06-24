@@ -5,5 +5,5 @@ metadata:
 data:
   base-url: http://192.168.49.2:32000
   secret: azerty
-  data-fair-api-key: azertyuiop
+  data-fair-api-key: dTo4Z21YOHdjYlY6U3M0akREU1pkRERqOHBnRnFQUVpf
   mails-transport: '{"host": "http://192.168.49.2:32000/mails"}'

@@ -27,11 +27,11 @@ spec:
             - name: PUBLIC_URL
               value: $(BASE_URL)/portals/
             - name: DIRECTORY_URL
-              value: $(BASE_URL)/simple-directory/
+              value: $(BASE_URL)/simple-directory
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
             - name: DATAFAIR_URL
-              value: $(BASE_URL)/data-fair/
+              value: $(BASE_URL)/data-fai
             - name: NOTIFY_URL
               value: $(BASE_URL)/notify
             - name: PRIVATE_NOTIFY_URL
@@ -50,7 +50,7 @@ spec:
             - name: THUMBOR_KEY
               value: $(SECRET_IDENTITIES)
             - name: THUMBOR_URL
-              value: $(BASE_URL)/thumbor/
+              value: $(BASE_URL)/thumbor
 
           ports:
             - containerPort: 8080
