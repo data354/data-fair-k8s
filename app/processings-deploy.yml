@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: portals
+  name: processings
 spec:
   replicas: 1
   selector:
     matchLabels:
-      name: portals
+      name: processings
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        name: portals
+        name: processings
     spec:
       containers:
-        - image: ghcr.io/data-fair/portals:1
-          name: portals
+        - image: ghcr.io/data-fair/processings:1
+          name: processings
           env:
             - name: BASE_URL
               valueFrom:
@@ -24,8 +24,10 @@ spec:
                   name: config-global
                   key: base-url
 
+            - name: MODE
+              value: server
             - name: PUBLIC_URL
-              value: $(BASE_URL)/portals/
+              value: $(BASE_URL)/processings/
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory/
             - name: PRIVATE_DIRECTORY_URL
@@ -38,19 +40,27 @@ spec:
               value: http://notify:8080
             - name: OPENAPIVIEWER_URL
               value: $(BASE_URL)/api-doc/
+            - name: MAILS_TRANSPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mails-transport
 
             - name: MONGO_HOST
               value: mongo
+            - name: DATA_FAIR_ADMIN_MODE
+              value: "true"
+            - name: DATA_FAIR_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: data-fair-api-key
 
             - name: SECRET_IDENTITIES
               valueFrom:
                 configMapKeyRef:
                   name: config-global
                   key: secret
-            - name: THUMBOR_KEY
-              value: $(SECRET_IDENTITIES)
-            - name: THUMBOR_URL
-              value: $(BASE_URL)/thumbor/
 
           ports:
             - containerPort: 8080
@@ -59,7 +69,7 @@ spec:
               memory: 512Mi
               cpu: 500m
           volumeMounts:
-            - mountPath: /webapp/data
+            - mountPath: /data
               name: data-fair-data
 
       volumes:
