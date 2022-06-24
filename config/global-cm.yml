@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-global
+data:
+  base-url: http://192.168.49.2:32000
+  secret: azerty

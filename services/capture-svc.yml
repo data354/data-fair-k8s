@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: capture
+spec:
+  selector:
+    name: capture
+  ports:
+    - name: "http"
+      port: 8080
+      targetPort: 8080

@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-fair
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: data-fair
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: data-fair
+    spec:
+      containers:
+        - env:
+            - name: BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: base-url
+            - name: CAPTURE_URL
+              value: $(BASE_URL)/capture/
+            - name: PUBLIC_URL
+              value: $(BASE_URL)/data-fair/
+            - name: DEBUG
+              value: upgrade*
+            - name: DIRECTORY_URL
+              value: $(BASE_URL)/simple-directory/
+            - name: ES_HOST
+              value: elasticsearch:9200
+            - name: MONGO_URL
+              value: mongodb://mongo:27017/data-fair
+            - name: NOTIFY_URL
+              value: $(BASE_URL)/notify
+            - name: OPENAPI_VIEWER_URL
+              value: $(BASE_URL)/api-doc/
+            - name: PRIVATE_DIRECTORY_URL
+              value: http://simple-directory:8080
+            - name: SECRET_IDENTITIES
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: secret
+            - name: SECRET_NOTIFICATIONS
+              value: $(SECRET_IDENTITIES)
+            - name: THUMBOR_KEY
+              value: $(SECRET_IDENTITIES)
+            - name: THUMBOR_URL
+              value: $(BASE_URL)/thumbor/
+          image: ghcr.io/data-fair/data-fair:master
+          name: data-fair
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 500m
+          volumeMounts:
+            - mountPath: /data
+              name: data-fair-data
+
+      volumes:
+        - name: data-fair-data
+          persistentVolumeClaim:
+            claimName: data-fair-data

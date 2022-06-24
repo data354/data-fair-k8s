@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: thumbor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: thumbor
+  template:
+    metadata:
+      labels:
+        name: thumbor
+    spec:
+      containers:
+        - name: thumbor
+          image: apsl/thumbor:6.7.0
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 500m
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - mountPath: /data
+              name: thumbor-data
+          env:
+            - name: MAX_AGE
+              value: "600"
+            - name: THUMBOR_PORT
+              value: "8000"
+            - name: SECURITY_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: secret
+            - name: STORAGE_EXPIRATION_SECONDS
+              value: "600"
+      volumes:
+        - name: thumbor-data
+          persistentVolumeClaim:
+            claimName: thumbor-data

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: elasticsearch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: elasticsearch
+  template:
+    metadata:
+      labels:
+        name: elasticsearch
+    spec:
+      containers:
+        - image: ghcr.io/data-fair/elasticsearch:7.17.1
+          name: elasticsearch
+          ports:
+            - containerPort: 9200
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 500m
+          env:
+            - name: discovery.type
+              value: single-node
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: elasticsearch-data
+      volumes:
+        - name: elasticsearch-data
+          persistentVolumeClaim:
+            claimName: elasticsearch-data
