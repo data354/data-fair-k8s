@@ -27,9 +27,9 @@ spec:
             - name: MODE
               value: worker
             - name: PUBLIC_URL
-              value: $(BASE_URL)/processings/
+              value: $(BASE_URL)/processings
             - name: DIRECTORY_URL
-              value: $(BASE_URL)/simple-directory/
+              value: $(BASE_URL)/simple-directory
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
             - name: DATAFAIR_URL

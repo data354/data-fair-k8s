@@ -29,9 +29,9 @@ spec:
             - name: DEBUG
               value: upgrade*
             - name: PUBLIC_URL
-              value: $(BASE_URL)/data-fair/
+              value: $(BASE_URL)/data-fair
             - name: DIRECTORY_URL
-              value: $(BASE_URL)/simple-directory/
+              value: $(BASE_URL)/simple-directory
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
             - name: OPENAPI_VIEWER_URL
@@ -43,7 +43,7 @@ spec:
               value: mongodb://mongo:27017/data-fair
 
             - name: CAPTURE_URL
-              value: $(BASE_URL)/capture/
+              value: $(BASE_URL)/capture
             - name: NOTIFY_URL
               value: $(BASE_URL)/notify
             - name: PRIVATE_NOTIFY_URL

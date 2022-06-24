@@ -25,7 +25,7 @@ spec:
                   key: base-url
 
             - name: PUBLIC_URL
-              value: $(BASE_URL)/portals/
+              value: $(BASE_URL)/portals
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory
             - name: PRIVATE_DIRECTORY_URL

@@ -25,9 +25,9 @@ spec:
                   key: base-url
 
             - name: PUBLIC_URL
-              value: $(BASE_URL)/metrics/
+              value: $(BASE_URL)/metrics
             - name: DIRECTORY_URL
-              value: $(BASE_URL)/simple-directory/
+              value: $(BASE_URL)/simple-directory
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
 

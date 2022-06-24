@@ -22,9 +22,9 @@ spec:
                   name: config-global
                   key: base-url
             - name: PUBLIC_URL
-              value: $(BASE_URL)/notify/
+              value: $(BASE_URL)/notify
             - name: DIRECTORY_URL
-              value: $(BASE_URL)/simple-directory/
+              value: $(BASE_URL)/simple-directory
             - name: MONGO_URL
               value: mongodb://mongo:27017/notify
             - name: OPENAPI_VIEWER_URL
