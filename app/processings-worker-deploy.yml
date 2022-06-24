@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processings-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: processings-worker
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: processings-worker
+    spec:
+      containers:
+        - image: ghcr.io/data-fair/processings:1
+          name: processings-worker
+          env:
+            - name: BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: base-url
+
+            - name: MODE
+              value: worker
+            - name: PUBLIC_URL
+              value: $(BASE_URL)/processings/
+            - name: DIRECTORY_URL
+              value: $(BASE_URL)/simple-directory/
+            - name: PRIVATE_DIRECTORY_URL
+              value: http://simple-directory:8080
+            - name: DATAFAIR_URL
+              value: $(BASE_URL)/data-fair/
+            - name: NOTIFY_URL
+              value: $(BASE_URL)/notify
+            - name: PRIVATE_NOTIFY_URL
+              value: http://notify:8080
+            - name: OPENAPIVIEWER_URL
+              value: $(BASE_URL)/api-doc/
+            - name: MAILS_TRANSPORT
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mails-transport
+
+            - name: MONGO_HOST
+              value: mongo
+            - name: DATA_FAIR_ADMIN_MODE
+              value: "true"
+            - name: DATA_FAIR_API_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: data-fair-api-key
+
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: 512Mi
+              cpu: 500m
+          volumeMounts:
+            - mountPath: /data
+              name: data-fair-data
+
+      volumes:
+        - name: data-fair-data
+          persistentVolumeClaim:
+            claimName: data-fair-data
