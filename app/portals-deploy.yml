@@ -60,9 +60,9 @@ spec:
               cpu: 500m
           volumeMounts:
             - mountPath: /webapp/data
-              name: processings-data
+              name: portals-data
 
       volumes:
-        - name: processings-data
+        - name: portals-data
           persistentVolumeClaim:
-            claimName: processings-data
+            claimName: portals-data
