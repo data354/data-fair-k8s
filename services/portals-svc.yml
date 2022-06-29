@@ -5,12 +5,10 @@ metadata:
 spec:
   selector:
     name: portals
-  type: NodePort
   ports:
     - name: "http"
       port: 8080
       targetPort: 8080
-    - name: "prometheus"
+    - name: "metrics"
       port: 9090
       targetPort: 9090
-      nodePort: 32023

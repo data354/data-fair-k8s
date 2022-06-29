@@ -65,8 +65,6 @@ spec:
                   key: secret
             - name: SECRET_IDENTITIES
               value: $(SECRET_NOTIFICATIONS)
-            - name: SECRET_SENDMAILS
-              value: $(SECRET_NOTIFICATIONS)
           ports:
             - containerPort: 8080
           resources:

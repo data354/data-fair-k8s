@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         name: portals
+        scrapeMetrics: 'true'
     spec:
       containers:
         - image: ghcr.io/data-fair/portals:1
@@ -53,7 +54,10 @@ spec:
               value: $(BASE_URL)/thumbor
 
           ports:
-            - containerPort: 8080
+            - name: "http"
+              containerPort: 8080
+            - name: "metrics"
+              containerPort: 9090
           resources:
             limits:
               memory: 512Mi

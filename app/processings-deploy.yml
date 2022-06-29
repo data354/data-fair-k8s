@@ -13,6 +13,7 @@ spec:
     metadata:
       labels:
         name: processings
+        scrapeMetrics: 'true'
     spec:
       containers:
         - image: ghcr.io/data-fair/processings:1
@@ -64,6 +65,8 @@ spec:
 
           ports:
             - containerPort: 8080
+            - name: metrics
+              containerPort: 9090
           resources:
             limits:
               memory: 512Mi
