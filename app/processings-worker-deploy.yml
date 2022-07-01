@@ -24,6 +24,12 @@ spec:
                   name: config-global
                   key: base-url
 
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
+
             - name: MODE
               value: worker
             - name: PUBLIC_URL
@@ -46,8 +52,7 @@ spec:
                   name: config-global
                   key: mails-transport
 
-            - name: MONGO_HOST
-              value: mongo
+           
             - name: DATA_FAIR_ADMIN_MODE
               value: "true"
             - name: DATA_FAIR_API_KEY

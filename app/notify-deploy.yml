@@ -22,12 +22,21 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: base-url
+
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
+
             - name: PUBLIC_URL
               value: $(BASE_URL)/notify
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory
+
             - name: MONGO_URL
-              value: mongodb://mongo:27017/notify
+              value: mongodb://$(MONGO_HOST):27017/notify
+
             - name: OPENAPI_VIEWER_URL
               value: $(BASE_URL)/api-doc/
             - name: PRIVATE_DIRECTORY_URL

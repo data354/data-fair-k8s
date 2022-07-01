@@ -24,6 +24,12 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: base-url
+                  
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
 
             - name: PUBLIC_URL
               value: $(BASE_URL)/metrics
@@ -33,7 +39,7 @@ spec:
               value: http://simple-directory:8080
 
             - name: MONGO_URL
-              value: mongodb://mongo:27017/processings
+              value: mongodb://$(MONGO_HOST):27017/processings
 
             - name: SYSLOG_SECRET
               value: syslog_secret

@@ -24,6 +24,12 @@ spec:
                   name: config-global
                   key: base-url
 
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
+
             - name: MODE
               value: worker
             - name: DEBUG
@@ -39,8 +45,9 @@ spec:
 
             - name: ES_HOST
               value: elasticsearch:9200
+
             - name: MONGO_URL
-              value: mongodb://mongo:27017/data-fair
+              value: mongodb://$(MONGO_HOST):27017/data-fair
 
             - name: CAPTURE_URL
               value: $(BASE_URL)/capture

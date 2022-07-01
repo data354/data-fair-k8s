@@ -20,11 +20,18 @@ spec:
           env:
             - name: ADMINS
               value: '["admin@test.com"]'
+
             - name: HOME_PAGE
               valueFrom:
                 configMapKeyRef:
                   name: config-global
                   key: base-url
+            - name: MONGO_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
+
             - name: LIST_ENTITIES_MODE
               value: admin
             - name: MAILDEV_ACTIVE
@@ -52,8 +59,10 @@ spec:
               value: '["admin","contrib","user"]'
             - name: SECRET_SENDMAILS
               value: $(SECRET_NOTIFICATIONS)
+
             - name: STORAGE_MONGO_URL
-              value: mongodb://mongo:27017/simple-directory
+              value: mongodb://$(MONGO_HOST):27017/simple-directory
+
             - name: USER_SELF_DELETE
               value: "true"
             - name: MANAGE_DEPARTMENTS
