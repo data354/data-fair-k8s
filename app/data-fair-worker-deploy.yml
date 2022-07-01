@@ -29,6 +29,12 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: mongo-host
+            
+            - name: ELASTICSEARCH_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: elasticsearch-host
 
             - name: MODE
               value: worker
@@ -44,7 +50,7 @@ spec:
               value: $(BASE_URL)/api-doc/
 
             - name: ES_HOST
-              value: elasticsearch:9200
+              value: $(ELASTICSEARCH_HOST):9200
 
             - name: MONGO_URL
               value: mongodb://$(MONGO_HOST):27017/data-fair
