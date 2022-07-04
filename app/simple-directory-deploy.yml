@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/data-fair/simple-directory:4
-          command: ["/webapp/node_modules/.bin/nodemon"]
+          # command: ["/webapp/node_modules/.bin/nodemon"]
           args: ["server"]
           name: simple-directory
           env:
@@ -26,6 +26,7 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: base-url
+                  
             - name: MONGO_HOST
               valueFrom:
                 configMapKeyRef:

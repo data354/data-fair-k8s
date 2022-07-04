@@ -7,8 +7,6 @@ spec:
   selector:
     matchLabels:
       name: data-fair
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:

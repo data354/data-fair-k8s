@@ -7,8 +7,6 @@ spec:
   selector:
     matchLabels:
       name: processings
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:

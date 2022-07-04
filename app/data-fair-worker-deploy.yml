@@ -7,8 +7,6 @@ spec:
   selector:
     matchLabels:
       name: data-fair-worker
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:

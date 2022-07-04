@@ -7,8 +7,6 @@ spec:
   selector:
     matchLabels:
       name: portals
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -41,7 +39,10 @@ spec:
               value: $(BASE_URL)/api-doc/
 
             - name: MONGO_HOST
-              value: mongo
+              valueFrom:
+                configMapKeyRef:
+                  name: config-global
+                  key: mongo-host
 
             - name: SECRET_IDENTITIES
               valueFrom:

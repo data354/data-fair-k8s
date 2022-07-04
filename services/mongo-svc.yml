@@ -7,6 +7,6 @@ spec:
   selector:
     name: mongo
   ports:
-    - name: "27017"
+    - name: "tcp"
       port: 27017
       targetPort: 27017
