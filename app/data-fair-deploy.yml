@@ -56,8 +56,10 @@ spec:
 
             - name: CAPTURE_URL
               value: $(BASE_URL)/capture/
+
             - name: NOTIFY_URL
               value: $(BASE_URL)/notify
+              
             - name: PRIVATE_NOTIFY_URL
               value: http://notify:8080
 
@@ -78,7 +80,8 @@ spec:
 
             - name: EXTRA_ADMIN_NAV_ITEMS
               value: '[{"id": "processings","iframe": "/processings/admin/plugins", "icon": "mdi-cog-transfer-outline", "title": "Traitements périodiques"},{"id": "portal","iframe": "/portals/manager/admin", "icon": "mdi-presentation", "title": "Portails"}]'
-
+          # readinessProbe:
+            
           ports:
             - containerPort: 8080
             - name: metrics

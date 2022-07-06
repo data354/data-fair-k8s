@@ -14,8 +14,6 @@ spec:
     spec:
       containers:
         - image: ghcr.io/data-fair/simple-directory:4
-          # command: ["/webapp/node_modules/.bin/nodemon"]
-          args: ["server"]
           name: simple-directory
           env:
             - name: ADMINS
@@ -58,8 +56,7 @@ spec:
               value: $(HOME_PAGE)/simple-directory
             - name: ROLES_DEFAULTS
               value: '["admin","contrib","user"]'
-            - name: SECRET_SENDMAILS
-              value: $(SECRET_NOTIFICATIONS)
+            
 
             - name: STORAGE_MONGO_URL
               value: mongodb://$(MONGO_HOST):27017/simple-directory
@@ -73,6 +70,9 @@ spec:
                 configMapKeyRef:
                   name: config-global
                   key: secret
+
+            - name: SECRET_SENDMAILS
+              value: $(SECRET_NOTIFICATIONS)
             - name: SECRET_IDENTITIES
               value: $(SECRET_NOTIFICATIONS)
           ports:

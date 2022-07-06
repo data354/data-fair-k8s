@@ -25,16 +25,22 @@ spec:
 
             - name: PUBLIC_URL
               value: $(BASE_URL)/portals
+
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory
+
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
+
             - name: DATAFAIR_URL
-              value: $(BASE_URL)/data-fai
+              value: $(BASE_URL)/data-fair
+
             - name: NOTIFY_URL
               value: $(BASE_URL)/notify
+
             - name: PRIVATE_NOTIFY_URL
               value: http://notify:8080
+              
             - name: OPENAPIVIEWER_URL
               value: $(BASE_URL)/api-doc/
 

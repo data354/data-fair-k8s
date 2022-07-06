@@ -54,6 +54,7 @@ spec:
 
             - name: DATA_FAIR_ADMIN_MODE
               value: "true"
+              
             - name: DATA_FAIR_API_KEY
               valueFrom:
                 configMapKeyRef:

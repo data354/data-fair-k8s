@@ -7,7 +7,6 @@ spec:
   selector:
     matchLabels:
       name: openapi-viewer
-  strategy: {}
   template:
     metadata:
       labels:

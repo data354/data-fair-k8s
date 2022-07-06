@@ -31,6 +31,7 @@ spec:
 
             - name: PUBLIC_URL
               value: $(BASE_URL)/notify
+
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory
 
@@ -39,6 +40,7 @@ spec:
 
             - name: OPENAPI_VIEWER_URL
               value: $(BASE_URL)/api-doc/
+              
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
 

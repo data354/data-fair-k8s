@@ -40,10 +40,13 @@ spec:
               value: upgrade*
             - name: PUBLIC_URL
               value: $(BASE_URL)/data-fair
+
             - name: DIRECTORY_URL
               value: $(BASE_URL)/simple-directory
+
             - name: PRIVATE_DIRECTORY_URL
               value: http://simple-directory:8080
+              
             - name: OPENAPI_VIEWER_URL
               value: $(BASE_URL)/api-doc/
 
